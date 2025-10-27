@@ -20,48 +20,48 @@ suppressPackageStartupMessages({
 # pkgs <- c("pdftools","stringr","readxl","tidyverse","scales","cSEM","pheatmap","RColorBrewer","openxlsx","DiagrammeR")
 # install.packages(setdiff(pkgs, rownames(installed.packages())))
 
-# Define the path to your Terms.txt file and PDFs folder
-terms_file <- "folder/Terms.txt"
+# Define the path to your Indicators.txt file and PDFs folder
+indicators_file <- "folder/Indicators.txt"
 pdf_folder <- "framewoks/Frameworks"
 
-# Function to load themes and synonyms from the Terms.txt file
-load_terms <- function(file_path) {
+# Function to load themes and synonyms from the indicators.txt file
+load_indicators <- function(file_path) {
   source(file_path, local = TRUE)
   if (!exists("themes") || !exists("synonyms")) {
-    stop("Error: 'themes' or 'synonyms' not found in the Terms.txt file.")
+    stop("Error: 'themes' or 'synonyms' not found in the Indicators.txt file.")
   }
   list(themes = themes, synonyms = synonyms)
 }
 
 # Load the themes and synonyms
-terms <- load_terms(terms_file)
-themes <- terms$themes
-synonyms <- terms$synonyms
+indicators <- load_indicators(indicators_file)
+themes <- indicators$themes
+synonyms <- indicators$synonyms
 
-# Function to extract proximity of terms ensuring full-term match
-extract_terms_within_proximity <- function(text, theme_terms, all_synonyms, proximity = 5) {
+# Function to extract proximity of indicators ensuring full-indicator match
+extract_indicators_within_proximity <- function(text, theme_indicators, all_synonyms, proximity = 5) {
   results <- list()
   
   # Tokenize the text and clean it
   tokens <- unlist(strsplit(text, "\\s+"))
   
-  for (theme_term in theme_terms) {
-    # Find positions of theme terms ensuring full-term match
-    theme_positions <- which(tokens == theme_term)
+  for (theme_indicator in theme_indicators) {
+    # Find positions of theme indicators ensuring full-indicator match
+    theme_positions <- which(tokens == theme_indicator)
     
     for (theme_name in names(all_synonyms)) {
       for (synonym in all_synonyms[[theme_name]]) {
-        # Find positions of synonyms ensuring full-term match
+        # Find positions of synonyms ensuring full-indicator match
         synonym_positions <- which(tokens == synonym)
         
         for (theme_pos in theme_positions) {
-          # Check for proximity of the synonyms to the theme terms
-          close_terms <- synonym_positions[abs(synonym_positions - theme_pos) <= proximity]
+          # Check for proximity of the synonyms to the theme indicators
+          close_indicators <- synonym_positions[abs(synonym_positions - theme_pos) <= proximity]
           
-          if (length(close_terms) > 0) {
+          if (length(close_indicators) > 0) {
             # Log the result with theme, synonym, and context
             results[[length(results) + 1]] <- list(
-              theme_term = theme_term,
+              theme_indicator = theme_indicator,
               synonym = synonym,
               theme_name = theme_name,
               context = paste(tokens[max(1, theme_pos - proximity):min(length(tokens), theme_pos + proximity)], collapse = " ")
@@ -74,7 +74,7 @@ extract_terms_within_proximity <- function(text, theme_terms, all_synonyms, prox
   return(results)
 }
 
-# Function to process each PDF and extract relevant terms for all themes
+# Function to process each PDF and extract relevant indicators for all themes
 process_pdfs_for_themes <- function(pdf_folder, all_synonyms) {
   pdf_files <- list.files(pdf_folder, pattern = "*.pdf", full.names = TRUE)
   if (length(pdf_files) == 0) {
@@ -87,9 +87,9 @@ process_pdfs_for_themes <- function(pdf_folder, all_synonyms) {
     # Extract text from the PDF
     text <- pdf_text(pdf_file)
     
-    # For each page of the PDF, extract terms within proximity for all themes
+    # For each page of the PDF, extract indicators within proximity for all themes
     for (page_text in text) {
-      results <- extract_terms_within_proximity(page_text, unlist(synonyms), all_synonyms)
+      results <- extract_indicators_within_proximity(page_text, unlist(synonyms), all_synonyms)
       
       # Add "Framework" (PDF file name) column to results
       if (length(results) > 0) {
@@ -632,3 +632,4 @@ avg_wide <- avg_per_framework %>%
 # View result and export
 print(avg_wide)
 readr::write_csv(avg_wide, "Results/pathway_by_cluster.csv")
+
