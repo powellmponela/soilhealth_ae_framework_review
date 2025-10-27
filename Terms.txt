@@ -1,0 +1,65 @@
+# Loading major themes and synonyms
+
+themes <- c("recycling", "input reduction", "soil health", "animal health", "biodiversity", "synergy", "economic diversification", "co-creation of knowledge", "social values and diets", "fairness", "connectivity", "land and natural resource governance", "participation") # 13 principles of agroecology
+
+
+synonyms <- list(
+  recycling = c("recycling", "nutrient cycling", "cycles", "cycling", "recovery", "biomass", "organic", "waste", 
+                 "wastewater", "greywater", "reuse", "water", "reclamation", "rainwater", "harvesting", 
+                  "reusable", "recyclable"),
+
+  "input reduction" = c( "reduction", "preventative", 
+                        "preventive", "practices", "nitrogen fixing", "nitrogen fixation", "leguminous", 
+                        "biological",  "natural control", "conservation", "storage", "retention", "efficient", "efficiency", 
+			"renewable", "generate", "sustainable", "farm-saved"),
+  
+  "soil health" = c("soil health", "microbial", "vermicomposting", "worm", "composting", 
+                    "permaculture", "permanent soil cover", "organic farming", "mulching", " soil cover", 
+                     "organic matter", "cover crops", "minimum tillage", "manure", "compost", "crop residue", "biochar"),
+  
+  "animal health" = c("animal health", "resilient breed", 
+                      "indigenous breed",   "indigenous breeds","carrying capacity"),
+  
+  biodiversity = c( "biodiversity", "diversity", "crop diversity", 
+                     "species", "pollinators", "pollinating", "insects", 
+                     "pest", "natural preditors", "rotation","forest", "woodland"),
+  
+  synergy = c("interactions", "integrated", 
+               "circular", "ecosystem", "stewardship", "landscape"),
+  
+  "economic diversification" = c( "economic incentives", "subsidy", "farm input credit", "economic", "economic diversification", "value chains"),
+  
+  "co-creation of knowledge" = c(  "co-creation", "knowledge", "farmer-to-farmer", "learning", "peer", 
+                                    "information", "sharing", "transfer", "traditional", 
+                                    "indigenous knowledge", "dissemination", 
+                                    "wisdom"),
+  
+  "social values and diets" = c("social", "diets", "cultural foods", "indigenous crops", 
+                                "heritage", "uniqueness", "tradition", 
+                                "customs",  "culturally", "traditional", 
+                                "relevant", "healthy", "nutritious", "balanced diet"),
+  
+  fairness = c("fairness", "fair trade", "equitable", "just", 
+               "fair price", "fair markets", "decent jobs", "respectable markets", 
+               "quality", "working conditions", "labor", 
+               "employment", "protection", 
+               "preservation", "safeguarding", 
+               "intellectual", "property rights", "labour rights", "labour laws"),
+  
+  connectivity = c(  "fairness", "power relations", "equitable", "just", 
+                     "prices", "markets",  "jobs", "respectable", 
+                     "quality", "working", "conditions", "labor", 
+                     "employment", "traditional", "knowledge", "protection", 
+                     "preservation", "indigenous", "safeguarding", "practices", 
+                     "intellectual", "property", "rights", "laws"),
+  
+  "land and natural resource governance" = c("consumers and producers", "food chain", "procurement", "cooperatives", "organisations", "community group", 
+						"connections"),
+  
+  participation = c("equitable", "ownership",  
+                    "inclusive", "participation", "broad", "diverse", 
+                    "marginalized", "groups", "underrepresented", "decision-making", "policy-making", 
+                    "governance", "community-based",  
+                    "participatory")
+)
+
